@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Mart — Products</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='productpage.css') }}">
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">24/7 <span>Smart</span> Mart</div>
+      <h1>Products</h1>
+      <div class="status-row">
+        <div class="status-dot"></div>
+        Inventory Management · Staff Access
+      </div>
+    </div>
+
+    <a href="/dashboard" class="back-btn">
+      Back to Dashboard
+    </a>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-pill">
+      Total Products:
+      <strong>{{ product|length }}</strong>
+    </div>
+
+    <div class="stat-pill">
+      Live Inventory
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+
+    <div class="table-header">
+      <div class="th">#</div>
+      <div class="th">Product Name</div>
+      <div class="th">Price</div>
+      <div class="th">Quantity</div>
+      <div class="th">Category</div>
+      <div class="th" style="justify-content:flex-end;">Actions</div>
+    </div>
+
+    <div class="table-body">
+
+      {% for p in product %}
+      <div class="product-row">
+
+        <div class="row-index">
+          {{ loop.index }}
+        </div>
+
+        <div class="row-name">
+          {{ p.name }}
+        </div>
+
+        <div class="row-price">
+          ${{ p.price }}
+        </div>
+
+        <div class="row-qty">
+          {{ p.quantity }}
+        </div>
+
+        <div class="row-category">
+          <span class="category-badge">
+            {{ p.category }}
+          </span>
+        </div>
+
+        <div class="row-actions">
+
+          <a href="/edit/{{ loop.index0 }}" class="action-btn btn-edit">
+            Edit
+          </a>
+
+          <a href="/delete/{{ loop.index0 }}" class="action-btn btn-delete">
+            Delete
+          </a>
+
+        </div>
+
+      </div>
+      {% endfor %}
+
+      {% if product|length == 0 %}
+      <div style="padding:20px; text-align:center;">
+        No Products Added
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="secure-note">
+      Smart Mart Security · Staff use only
+    </div>
+
+    <a href="/dashboard" class="back-btn">
+      Back to Dashboard
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>

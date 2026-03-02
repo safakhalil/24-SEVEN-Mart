@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Mart — Staff Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='logpage.css') }}">
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-wrap">
+    <div class="grid-lines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="scan-line"></div>
+    <div id="particles"></div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="wrapper">
+
+    <!-- Left Panel -->
+    <div class="left">
+      <div class="shelf"></div>
+      <div class="shelf"></div>
+      <div class="shelf"></div>
+      <div class="shelf-dots" id="shelfDots"></div>
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="cart-center">🛒</div>
+      <div class="left-logo">24/7 <span>Smart</span> Mart</div>
+      <div>
+        <p class="tagline"><strong>Smarter Operations,</strong><br>Faster Checkout</p>
+        <div class="dots-nav">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right">
+      <div class="status-row">
+        <div class="status-dot"></div>
+        System Online &nbsp;·&nbsp; Authorized Access Only
+      </div>
+
+      <h1>Staff Login</h1>
+      <p class="subtitle">New here? <a href="#">Request access</a> from your manager.</p>
+
+      <form action="" method="POST">
+
+        <div class="field">
+          <label>Full Name</label>
+          <div class="input-wrap">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <input type="text" name="name" placeholder="Enter your name" autocomplete="name">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <div class="input-wrap">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            <input type="email" name="email" placeholder="Enter your email" autocomplete="email">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <div class="input-wrap">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <input type="password" name="password" placeholder="Enter your password" autocomplete="current-password">
+          </div>
+        </div>
+
+        <button class="btn" type="submit">Log In to System</button>
+
+      </form>
+
+      <div class="divider">Protected Access</div>
+
+      <div class="secure-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Smart Mart Security &nbsp;·&nbsp; Staff use only
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Generate floating particles
+    const pCont = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.cssText = `left:${Math.random()*100}%;bottom:0;--d:${7+Math.random()*10}s;--dl:${-Math.random()*15}s`;
+      pCont.appendChild(p);
+    }
+
+    // Generate shelf dots
+    const sd = document.getElementById('shelfDots');
+    [25, 50, 75].forEach(top => {
+      for (let i = 0; i < 6; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot';
+        d.style.cssText = `top:calc(${top}% - 4px);left:${8+i*16}%;--bd:${2+Math.random()*3}s;--bdl:${-Math.random()*4}s`;
+        sd.appendChild(d);
+      }
+    });
+  </script>
+
+</body>
+</html>
